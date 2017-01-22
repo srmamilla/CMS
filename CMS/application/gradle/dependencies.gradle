@@ -1,0 +1,32 @@
+repositories {
+    mavenLocal()
+    jcenter()
+}
+configurations.all {
+    resolutionStrategy {
+        force 'xml-apis:xml-apis:1.0.b2'
+    }
+
+    exclude module: 'spring-boot-starter-logging'
+    exclude group: 'org.apache.logging.log4j', module:'log4j-slf4j-impl'
+    exclude group: 'org.slf4j',module:'slf4j-log4j12'
+  
+}
+
+
+ def spring_boot_version = '1.2.5.RELEASE'
+
+dependencies {
+    // Spring Boot
+    compile "org.springframework.boot:spring-boot-starter-web:${spring_boot_version}",
+            "org.springframework.boot:spring-boot-starter-actuator:${spring_boot_version}",
+
+         
+            "org.springframework.boot:spring-boot-dependencies:${spring_boot_version}"
+    
+    //testCompile 'junit:junit:4.12'
+    testCompile "org.springframework.boot:spring-boot-starter-test:${spring_boot_version}"
+    
+}
+
+//compileJava.dependsOn ':core:install'
